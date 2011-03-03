@@ -1,0 +1,10 @@
+# Stoopid Windows© and Apple© files
+.DS_Store
+Thumbs.db
+desktop.ini
+# Eclipse-generated files
+.settings/*
+.project
+.buildpath
+# PhpStorm
+.idea/*
