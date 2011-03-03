@@ -17,13 +17,37 @@ Oh, and no Tests either... \(°ö°)/
 
 # Installation
 
-## Get the bundle
+### Get the bundle
 
 To install the bundle, place it in the `src/Nutellove` directory of your project
 (so that it lives at `src/Nutellove/JavascriptClassBundle`). You can do this by adding the bundle as a submodule,
 cloning it, or simply downloading the source.
 
     git submodule add https://github.com/Nutellove/JavascriptClassBundle.git src/Nutellove/JavascriptClassBundle
+
+### Add the namespace to your autoloader
+
+If it is the first Nutellove bundle you install in your Symfony 2 project, and it is, because there is only one, you
+need to add the `Nutellove` namespace to your autoloader:
+
+    // app/autoload.php
+    $loader->registerNamespaces(array(
+        'Nutellove'                       => __DIR__.'/../src'
+        // ...
+    ));
+
+### Initialize the bundle
+
+To start using the bundle, initialize the bundle in your Kernel. This
+file is usually located at `app/AppKernel`:
+
+    public function registerBundles()
+    {
+        $bundles = array(
+            // ...
+            new Nutellove\JavascriptClassBundle\JavascriptClassBundle(),
+        );
+    )
 
 
 
@@ -118,31 +142,29 @@ Easy. ;)
 - Aaron Newton, kudos to his super-cow-powers
 - *You*, sneaky FOSS lover !
 
-## FREE
+## FREE, as in free (b|sp)ee(ch|r)
 
 **The Carcase**
-
 
 The object that we saw, let us recall,  
 This summer morn when warmth and beauty mingle —  
 At the path's turn, a carcase lay asprawl  
 Upon a bed of shingle.  
 
+Legs raised, like some old whore far-gone in passion,  
+The burning, deadly, poison-sweating mass
+Opened its paunch in careless, cynic fashion,
+Ballooned with evil gas.
 
-* Legs raised, like some old whore far-gone in passion,
-* The burning, deadly, poison-sweating mass
-* Opened its paunch in careless, cynic fashion,
-* Ballooned with evil gas.
+On this putrescence the sun blazed in gold,  
+Cooking it to a turn with eager care —  
+So to repay to Nature, hundredfold,  
+What she had mingled there.  
 
-* On this putrescence the sun blazed in gold,
-* Cooking it to a turn with eager care —
-* So to repay to Nature, hundredfold,
-* What she had mingled there.
-
-* The sky, as on the opening of a flower,
-* On this superb obscenity smiled bright.
-* The stench drove at us, with such fearsome power
-* You thought you'd swoon outright.
+The sky, as on the opening of a flower,  
+On this superb obscenity smiled bright.  
+The stench drove at us, with such fearsome power  
+You thought you'd swoon outright.  
 
 
 
