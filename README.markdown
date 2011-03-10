@@ -12,7 +12,7 @@ Therefore, for now, only basic stuff like accessors and mutators for Entity fiel
 
 Also, authentication and security are inexistant.
 
-Oh, and no Tests either... \(°ö°)/
+Oh, and no Tests either... \(°ö°)/ !?!
 
 
 # Installation
@@ -152,9 +152,9 @@ At the path's turn, a carcase lay asprawl
 Upon a bed of shingle.  
 
 Legs raised, like some old whore far-gone in passion,  
-The burning, deadly, poison-sweating mass
-Opened its paunch in careless, cynic fashion,
-Ballooned with evil gas.
+The burning, deadly, poison-sweating mass  
+Opened its paunch in careless, cynic fashion,  
+Ballooned with evil gas.  
 
 On this putrescence the sun blazed in gold,  
 Cooking it to a turn with eager care —  
@@ -164,17 +164,12 @@ What she had mingled there.
 The sky, as on the opening of a flower,  
 On this superb obscenity smiled bright.  
 The stench drove at us, with such fearsome power  
-You thought you'd swoon outright.  
+You thought you'd swoon outright.
 
-
-
-Flies trumpeted upon the rotten belly 
-
-Whence larvae poured in legions far and wide, 
-
-And flowed, like molten and liquescent jelly, 
-
-Down living rags of hide.
+Flies trumpeted upon the rotten belly  
+Whence larvae poured in legions far and wide,  
+And flowed, like molten and liquescent jelly,  
+Down living rags of hide.  
 
 
 
