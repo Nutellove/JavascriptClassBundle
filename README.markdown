@@ -1,7 +1,7 @@
 JavascriptClassBundle
 =====================
 
-# IMPORTANT
+# IMPORTANT!
 
 Generate javascript mootools classes providing xhr-managed persistence for an entity in a bundle from its yaml mapping.
 
