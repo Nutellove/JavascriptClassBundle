@@ -6,7 +6,7 @@
 
     <parameters>
         <parameter key="nutellove_jsclass.generator.spaces">4</parameter>
-        <parameter key="nutellove_jsclass.generator.framework">Mootools</parameter>
+        <parameter key="nutellove_jsclass.generator.framework">Mootools!</parameter>
     </parameters>
 
 </container>

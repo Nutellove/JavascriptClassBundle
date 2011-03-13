@@ -29,8 +29,8 @@ use Doctrine\ORM\Mapping\ClassMetadataInfo;
  */
 class GenerateEntityCommand extends AbstractCommand
 {
-  //protected $_js_framework_name   = 'mootools';
-  protected $_js_framework_folder = 'Mootools';
+
+  protected $_js_framework = 'Mootools';
 
 
 
@@ -83,7 +83,7 @@ EOT
     // Generation of the Base Mootools Entity
     $output->writeln(sprintf('Generating Mootools Javascript Entities for "<info>%s</info>"', $fullEntityClassName));
 
-    $baseEntityPath = $bundle->getPath().'/Resources/public/jsclass/'.strtolower($this->getJsFrameworkFolder()).
+    $baseEntityPath = $bundle->getPath().'/Resources/public/jsclass/'.strtolower($this->getJsFramework()).
                       '/entity/'.strtolower($bundle->getName()).'/base/Base'.$entity.'.class.js';
     $baseEntityGenerator = $this->getMootoolsBaseEntityGenerator();
 
@@ -110,7 +110,7 @@ EOT
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Generation (if needed) of the Mootools Entity
-    $entityPath = $bundle->getPath().'/Resources/public/jsclass/'.strtolower($this->getJsFrameworkFolder()).
+    $entityPath = $bundle->getPath().'/Resources/public/jsclass/'.strtolower($this->getJsFramework()).
                   '/entity/'.strtolower($bundle->getName()).'/'.$entity.'.class.js';
 
     $entityGenerator = $this->getMootoolsEntityGenerator();
