@@ -13,9 +13,6 @@ var BaseEntityAbstract = new Class({
    ,debugMode: true
   },
 
-  //entityProperties: null,
-  entityMethods: {},
-
   hasLoaded: false,
   hasChanged: false,
 
@@ -226,6 +223,6 @@ var BaseEntityAbstract = new Class({
 
   executeMethod: function(methodName, params)
   {
-    // TODO : for later, execute custom method defined in PHP controller
+    // TODO : for later, execute custom method defined in PHP controller?
   }
 });

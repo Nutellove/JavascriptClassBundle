@@ -30,8 +30,6 @@ class GenerateEntityCommand extends AbstractCommand
 
   protected $_js_framework = 'Mootools';
 
-
-
   protected function configure()
   {
     $this
@@ -40,7 +38,7 @@ class GenerateEntityCommand extends AbstractCommand
       ->addArgument('bundle', InputArgument::REQUIRED, 'The name of the bundle (case-sensitive).')
       ->addArgument('entity', InputArgument::REQUIRED, 'The name of the entity (case-sensitive).')
       ->addOption('mapping-type', null, InputOption::VALUE_OPTIONAL, 'The mapping type to to use for the entity. Can be yaml or annotation.', 'yaml')
-      ->addOption('framework', null, InputOption::VALUE_OPTIONAL, 'The javascript framework for which your want to generate classes. (USELESS TOO)', 'Mootools')
+      ->addOption('framework', null, InputOption::VALUE_OPTIONAL, 'The javascript framework for which your want to generate classes.', 'from_config')
       ->setHelp(<<<EOT
 The <info>jsclass:generate:entity</info> task (re)generates a new Mootools Class Base entity, initializes if needed an extended Mootools Class entity in which you'll write your custom own javascript logic, and (re)generates the Controllers needed for PHP/JS synchronization via AJAX, all that inside a bundle :
 
@@ -63,13 +61,16 @@ EOT
     $entity = $input->getArgument('entity');
     $fullEntityClassName = $targetBundle->getNamespace().'\\Entity\\'.$entity;
     $mappingType = $input->getOption('mapping-type');
+    $framework = ($input->getOption('framework') == 'from_config')
+        ? $this->container->getParameter('nutellove_jsclass.generator.framework')
+        : $input->getOption('framework');
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Fetching the metadata for this Bundle/Entity/Mapping-Type
     $metadatas = $this->getBundleMetadatas($targetBundle);
     //var_dump ($metadatas);
 
-    $class = $metadatas[$fullEntityClassName];
+    $classMetadata = $metadatas[$fullEntityClassName];
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Setup a new exporter for the mapping type specified
@@ -79,25 +80,27 @@ EOT
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Generation of the Base Mootools Entity
-    $output->writeln(sprintf('Generating Mootools Javascript Entities for "<info>%s</info>"', $fullEntityClassName));
+    $output->writeln(sprintf('Generating %s Javascript Entities for "<info>%s</info>"', $framework, $fullEntityClassName));
 
     $baseEntityPath = $targetBundle->getPath().'/Resources/public/jsclass/'.strtolower($this->getJsFramework()).
                       '/entity/'.strtolower($targetBundle->getName()).'/base/Base'.$entity.'.class.js';
-    $baseEntityGenerator = $this->getMootoolsBaseEntityGenerator();
+    $baseEntityGeneratorGetter = 'get'.$framework.'BaseEntityGenerator';
+    $baseEntityGenerator = call_user_func_array(array($this, $baseEntityGeneratorGetter), array());
+    //$baseEntityGenerator = $this->getMootoolsBaseEntityGenerator();
 
     if ('annotation' === $mappingType) {
       $exporter->setEntityGenerator($baseEntityGenerator);
-      $baseEntityCode = $exporter->exportClassMetadata($class);
+      $baseEntityCode = $exporter->exportClassMetadata($classMetadata);
       //$mappingPath = $mappingCode = false;
     } else {
-      $baseEntityCode = $baseEntityGenerator->generateEntityClass($class);
+      $baseEntityCode = $baseEntityGenerator->generateEntityClass($classMetadata);
     }
 
     $output->writeln(sprintf('  > Base Js Entity for into <info>%s</info>', $baseEntityPath));
 
     if (file_exists($baseEntityPath)) {
       $output->writeln(sprintf('    > Already existing, overwriting.'));
-      //throw new \RuntimeException(sprintf("Mootools Base Entity %s already exists.", $class->name));
+      //throw new \RuntimeException(sprintf("Mootools Base Entity %s already exists.", $classMetadata->name));
     }
 
     if (!is_dir($dir = dirname($baseEntityPath))) {
@@ -116,10 +119,10 @@ EOT
 
     if ('annotation' === $mappingType) {
       $exporter->setEntityGenerator($entityGenerator);
-      $entityCode = $exporter->exportClassMetadata($class);
+      $entityCode = $exporter->exportClassMetadata($classMetadata);
       //$mappingPath = $mappingCode = false;
     } else {
-      $entityCode = $entityGenerator->generateEntityClass($class);
+      $entityCode = $entityGenerator->generateEntityClass($classMetadata);
     }
 
     $output->writeln(sprintf('  > Js Entity into <info>%s</info>', $entityPath));
@@ -146,10 +149,10 @@ EOT
 
     if ('annotation' === $mappingType) {
       $exporter->setEntityGenerator($baseControllerGenerator);
-      $baseControllerCode = $exporter->exportClassMetadata($class);
+      $baseControllerCode = $exporter->exportClassMetadata($classMetadata);
       //$mappingPath = $mappingCode = false;
     } else {
-      $baseControllerCode = $baseControllerGenerator->generateEntityClass($class);
+      $baseControllerCode = $baseControllerGenerator->generateEntityClass($classMetadata);
     }
 
     $output->writeln(sprintf('  > Base Entity Controller into <info>%s</info>', $baseControllerPath));
@@ -173,9 +176,9 @@ EOT
 
     if ('annotation' === $mappingType) {
       $exporter->setEntityGenerator($controllerGenerator);
-      $controllerCode = $exporter->exportClassMetadata($class);
+      $controllerCode = $exporter->exportClassMetadata($classMetadata);
     } else {
-      $controllerCode = $controllerGenerator->generateEntityClass($class);
+      $controllerCode = $controllerGenerator->generateEntityClass($classMetadata);
     }
 
     $output->writeln(sprintf('  > Entity Controller into <info>%s</info>', $controllerPath));
@@ -189,6 +192,5 @@ EOT
       file_put_contents($controllerPath, $controllerCode);
     }
 
-    var_dump($this->container->getParameter('nutellove_jsclass.generator.framework'));
   }
 }
