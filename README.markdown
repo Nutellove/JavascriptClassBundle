@@ -93,23 +93,23 @@ There are **many** things to do to improve this Bundle, such as :
 
 # USAGE
 
+## MAPPING
+
 In your ORM mapping, you must provide for each field a `js` attribute under the `options` attribute, with one of the following values.
 
-For reading :
+Possible values for `js` are :
 
-* read
-* r
+* for reading only :
+  * read
+  * r
+* for writing only :
+  * write
+  * w
+* for reading and writing :
+  * readwrite
+  * rw
 
- For writing :
-
-* write
-* w
-
- For both :
-
-* readwrite
-* rw
-
+## COMMANDS
 
     $ app/console jsclass:generate:entity <bundle> <entity>
 
