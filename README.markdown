@@ -12,7 +12,7 @@ Therefore, for now, only basic stuff like accessors and mutators for Entity fiel
 
 Also, authentication and security are inexistant.
 
-Oh, and no Tests either... \(°ö°)/ !?!
+Oh, and no Tests either... \\(°ö°)/ !?!
 
 
 # Installation
