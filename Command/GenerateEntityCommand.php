@@ -56,17 +56,17 @@ EOT
    */
   protected function execute(InputInterface $input, OutputInterface $output)
   {
-
-    $bundle = $this->application->getKernel()->getBundle($input->getArgument('bundle'));
-    $javascriptClassBundle = $this->application->getKernel()->getBundle('JavascriptClassBundle');
+    // Get the bundles we need
+    $targetBundle = $this->getApplication()->getKernel()->getBundle($input->getArgument('bundle'));
+    $javascriptClassBundle = $this->getApplication()->getKernel()->getBundle('JavascriptClassBundle');
 
     $entity = $input->getArgument('entity');
-    $fullEntityClassName = $bundle->getNamespace().'\\Entity\\'.$entity;
+    $fullEntityClassName = $targetBundle->getNamespace().'\\Entity\\'.$entity;
     $mappingType = $input->getOption('mapping-type');
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Fetching the metadata for this Bundle/Entity/Mapping-Type
-    $metadatas = $this->getBundleMetadatas($bundle);
+    $metadatas = $this->getBundleMetadatas($targetBundle);
     //var_dump ($metadatas);
 
     $class = $metadatas[$fullEntityClassName];
@@ -81,8 +81,8 @@ EOT
     // Generation of the Base Mootools Entity
     $output->writeln(sprintf('Generating Mootools Javascript Entities for "<info>%s</info>"', $fullEntityClassName));
 
-    $baseEntityPath = $bundle->getPath().'/Resources/public/jsclass/'.strtolower($this->getJsFramework()).
-                      '/entity/'.strtolower($bundle->getName()).'/base/Base'.$entity.'.class.js';
+    $baseEntityPath = $targetBundle->getPath().'/Resources/public/jsclass/'.strtolower($this->getJsFramework()).
+                      '/entity/'.strtolower($targetBundle->getName()).'/base/Base'.$entity.'.class.js';
     $baseEntityGenerator = $this->getMootoolsBaseEntityGenerator();
 
     if ('annotation' === $mappingType) {
@@ -108,11 +108,11 @@ EOT
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Generation (if needed) of the Mootools Entity
-    $entityPath = $bundle->getPath().'/Resources/public/jsclass/'.strtolower($this->getJsFramework()).
-                  '/entity/'.strtolower($bundle->getName()).'/'.$entity.'.class.js';
+    $entityPath = $targetBundle->getPath().'/Resources/public/jsclass/'.strtolower($this->getJsFramework()).
+                  '/entity/'.strtolower($targetBundle->getName()).'/'.$entity.'.class.js';
 
     $entityGenerator = $this->getMootoolsEntityGenerator();
-    $entityGenerator->setClassToExtend ("Base".$bundle->getName().$entity);
+    $entityGenerator->setClassToExtend ("Base".$targetBundle->getName().$entity);
 
     if ('annotation' === $mappingType) {
       $exporter->setEntityGenerator($entityGenerator);
@@ -140,7 +140,7 @@ EOT
     // Generation of the Base Controller
     $output->writeln(sprintf('Generating Controllers for "<info>%s</info>"', $fullEntityClassName));
 
-    $baseControllerPath = $javascriptClassBundle->getPath().'/Controller/Entity/'.$bundle->getName().'/Base/'.$entity.'Controller.php';
+    $baseControllerPath = $javascriptClassBundle->getPath().'/Controller/Entity/'.$targetBundle->getName().'/Base/'.$entity.'Controller.php';
 
     $baseControllerGenerator = $this->getBaseControllerGenerator();
 
@@ -167,7 +167,7 @@ EOT
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Generation of the Controller (if needed)
 
-    $controllerPath = $javascriptClassBundle->getPath().'/Controller/Entity/'.$bundle->getName().'/'.$entity.'Controller.php';
+    $controllerPath = $javascriptClassBundle->getPath().'/Controller/Entity/'.$targetBundle->getName().'/'.$entity.'Controller.php';
 
     $controllerGenerator = $this->getControllerGenerator();
 
