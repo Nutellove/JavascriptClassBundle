@@ -58,13 +58,11 @@ There are **many** things to do to improve this Bundle, such as :
 * Release
   * Use options in config
 * Cleaning up my student code :p
-  * Create a JavascriptClassBundle git repo
+  * Create a JavascriptClassBundle git repo (done)
   * Create a JavascriptClassTestBundle git repo
-  * Use git submodules
+  * Use git submodules (done)
   * Validate [the guidelines](http://docs.symfony-reloaded.org/guides/bundles/best_practices.html) except for spaces
-  * Move Ant & Anthill Entities to Tests
   * Writing up Tests (I swear I'll take time to write some, and then some more)
-  * Extensive Testing
   * Mootools ≥ 1.3 in dependencies (Quote : A bundle should not embed third-party libraries written in JavaScript)
 * Next
   * Abstract Class for Generators (code refactorization)
@@ -171,15 +169,10 @@ Whence larvae poured in legions far and wide,
 And flowed, like molten and liquescent jelly,  
 Down living rags of hide.  
 
-
-
 The mass ran down, or, like a wave elated 
-
 Rolled itself on, and crackled as if frying: 
-
 You'd think that corpse, by vague breath animated, 
-
-Drew life from multiplying.
+Drew life from multiplying. 
 
 
 
