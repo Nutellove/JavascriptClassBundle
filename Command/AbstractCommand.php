@@ -21,7 +21,7 @@ use Nutellove\JavascriptClassBundle\Tools\Generator\Mootools\EntityGenerator;
 use Nutellove\JavascriptClassBundle\Tools\Generator\Mootools\BaseEntityGenerator;
 use Nutellove\JavascriptClassBundle\Tools\Generator\ControllerEntityGenerator;
 use Nutellove\JavascriptClassBundle\Tools\Generator\BaseControllerEntityGenerator;
-use Nutellove\JavascriptClassBundle\Tools\Mapping\Driver\JavascriptClassYamlDriver;
+//use Nutellove\JavascriptClassBundle\Tools\Mapping\Driver\JavascriptClassYamlDriver;
 
 
 /**
@@ -122,40 +122,36 @@ abstract class AbstractCommand extends DoctrineCommand
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //// METADATAS /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    protected function getBundleMetadatas(Bundle $bundle)
-    {
-        $namespace = $bundle->getNamespace();
-        echo "Namespace : " . $namespace . "\n";
-        $bundleMetadatas = array();
-        // We need to add our own Customized Drivers for the mootools field attribute
-        $driverChain = new DriverChain();
-        $driverChain->addDriver(new JavascriptClassYamlDriver(
-            array(
-                0 => $bundle->getPath() . '/Resources/config/doctrine/metadata/orm'
-            )),
-            $namespace . '\\Entity' // What is this used for ? TODO
-        );
-        $entityManagers = $this->getDoctrineEntityManagers();
-        foreach ($entityManagers as $key => $em) {
-            $em->getConfiguration()->setMetadataDriverImpl($driverChain);
-
-            $cmf = new DisconnectedClassMetadataFactory();
-            $cmf->setEntityManager($em);
-
-            $metadatas = $cmf->getAllMetadata();
-
-            //echo "Metas : ";
-            //var_dump ($metadatas);
-
-            foreach ($metadatas as $metadata) {
-                if (strpos($metadata->name, $namespace) === 0) {
-                    $bundleMetadatas[$metadata->name] = $metadata;
-                }
-            }
-        }
-
-        return $bundleMetadatas;
-    }
+//    protected function getBundleMetadatas(Bundle $bundle, string $mappingType)
+//    {
+//        $namespace = $bundle->getNamespace();
+//        echo "Namespace : " . $namespace . "\n";
+//        $bundleMetadatas = array();
+//        $driverChain = new DriverChain();
+//        $driverChain->addDriver(new JavascriptClassYamlDriver(
+//            array(
+//                0 => $bundle->getPath() . '/Resources/config/doctrine/metadata/orm'
+//            )),
+//            $namespace . '\\Entity' // What is this used for ? TODO
+//        );
+//        $entityManagers = $this->getDoctrineEntityManagers();
+//        foreach ($entityManagers as $key => $em) {
+//            $em->getConfiguration()->setMetadataDriverImpl($driverChain);
+//
+//            $cmf = new DisconnectedClassMetadataFactory();
+//            $cmf->setEntityManager($em);
+//
+//            $metadatas = $cmf->getAllMetadata();
+//
+//            foreach ($metadatas as $metadata) {
+//                if (strpos($metadata->name, $namespace) === 0) {
+//                    $bundleMetadatas[$metadata->name] = $metadata;
+//                }
+//            }
+//        }
+//
+//        return $bundleMetadatas;
+//    }
 
 }
 

@@ -41,7 +41,7 @@ class GenerateEntityCommand extends AbstractCommand
       ->setDescription('Generate javascript mootools classes providing xhr-managed persistence for an entity in a bundle from its yaml mapping.')
       ->addArgument('bundle', InputArgument::REQUIRED, 'The name of the bundle (case-sensitive).')
       ->addArgument('entity', InputArgument::REQUIRED, 'The name of the entity (case-sensitive).')
-      ->addOption('mapping-type', null, InputOption::VALUE_OPTIONAL, 'The mapping type to to use for the entity. (USELESS OPTION)', 'yaml')
+      ->addOption('mapping-type', null, InputOption::VALUE_OPTIONAL, 'The mapping type to to use for the entity. Can be yaml or annotation.', 'yaml')
       ->addOption('framework', null, InputOption::VALUE_OPTIONAL, 'The javascript framework for which your want to generate classes. (USELESS TOO)', 'Mootools')
       ->setHelp(<<<EOT
 The <info>jsclass:generate:entity</info> task (re)generates a new Mootools Class Base entity, initializes if needed an extended Mootools Class entity in which you'll write your custom own javascript logic, and (re)generates the Controllers needed for PHP/JS synchronization via AJAX, all that inside a bundle :
@@ -67,8 +67,10 @@ EOT
     $mappingType = $input->getOption('mapping-type');
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Fetching the metadata for this Bundle/Entity
+    // Fetching the metadata for this Bundle/Entity/Mapping-Type
     $metadatas = $this->getBundleMetadatas($bundle);
+    //var_dump ($metadatas);
+
     $class = $metadatas[$fullEntityClassName];
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
