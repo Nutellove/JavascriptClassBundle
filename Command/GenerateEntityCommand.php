@@ -3,7 +3,10 @@
 /*
  * This file is part of the Nutellove project.
  *
- * © author Antoine Goutenoir <antoine.goutenoir@gmail.com>
+ * Generate new Mootools Classes and associated Controllers and Routes
+ * for an entity inside a bundle.
+ *
+ * ©author Antoine Goutenoir <antoine.goutenoir@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -21,12 +24,7 @@ use Doctrine\ORM\Tools\EntityGenerator;
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
 //use Doctrine\ORM\EntityManager;
 
-/**
- * Generate new Mootools Classes and associated Controllers and Routes
- * for an entity inside a bundle.
- *
- * @author Antoine Goutenoir <antoine.goutenoir@gmail.com>
- */
+
 class GenerateEntityCommand extends AbstractCommand
 {
 
