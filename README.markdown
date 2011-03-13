@@ -67,13 +67,13 @@ There are **many** things to do to improve this Bundle, such as :
 * Next
   * Abstract Class for all Generators (code refactorization)
   * Writing a command that does all the Entities within a Bundle
-  * Minifying => Assetic :)
 * Future
   * Adding new JS Entity Classes :
     * Pure JS (CoffeeScript <3 except for implement)
     * jQuery
    * Authentication, User rights management, Security. Think.
    * JS Entity Manager
+  * Minifying => Assetic :)
   * Collections
   * Entity Associations
     * One-to-One
@@ -96,14 +96,20 @@ There are **many** things to do to improve this Bundle, such as :
 In your ORM mapping, you must provide for each field a `js` attribute under the `options` attribute, with one of the following values.
 
 For reading :
+
 * read
 * r
-For writing :
+
+ For writing :
+
 * write
 * w
-For both :
+
+ For both :
+
 * readwrite
 * rw
+
 
     $ app/console jsclass:generate:entity <bundle> <entity>
 
