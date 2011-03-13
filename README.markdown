@@ -65,7 +65,7 @@ There are **many** things to do to improve this Bundle, such as :
   * Writing up Tests (I swear I'll take time to write some, and then some more)
   * Mootools ≥ 1.3 in dependencies (Quote : A bundle should not embed third-party libraries written in JavaScript)
 * Next
-  * Abstract Class for Generators (code refactorization)
+  * Abstract Class for all Generators (code refactorization)
   * Writing a command that does all the Entities within a Bundle
   * Minifying => Assetic :)
 * Future
@@ -92,6 +92,18 @@ There are **many** things to do to improve this Bundle, such as :
 
 
 # USAGE
+
+In your ORM mapping, you must provide for each field a `js` attribute under the `options` attribute, with one of the following values.
+
+For reading :
+* read
+* r
+For writing :
+* write
+* w
+For both :
+* readwrite
+* rw
 
     $ app/console jsclass:generate:entity <bundle> <entity>
 
