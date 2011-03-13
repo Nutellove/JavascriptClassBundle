@@ -21,11 +21,10 @@ use Nutellove\JavascriptClassBundle\Tools\Generator\Mootools\EntityGenerator;
 use Nutellove\JavascriptClassBundle\Tools\Generator\Mootools\BaseEntityGenerator;
 use Nutellove\JavascriptClassBundle\Tools\Generator\ControllerEntityGenerator;
 use Nutellove\JavascriptClassBundle\Tools\Generator\BaseControllerEntityGenerator;
-//use Nutellove\JavascriptClassBundle\Tools\Mapping\Driver\JavascriptClassYamlDriver;
 
 
 /**
- * Base class for MootoolsClass console commands to extend from.
+ * Base class for JavascriptClass console commands to extend from.
  *
  * Provides some helper and convenience methods to configure
  * MootoolsClass commands in the context of bundles
@@ -35,21 +34,27 @@ use Nutellove\JavascriptClassBundle\Tools\Generator\BaseControllerEntityGenerato
  */
 abstract class AbstractCommand extends DoctrineCommand
 {
+
+    /**
+     * These are the allowed frameworks
+     */
+    //protected $_allowed_js_frameworks = array ('Mootools', 'jQuery');
+
     /**
      * This is the (default) name of the Js Framework used
      * Precisely, this is the name of the folder holding the Generators
      * so it is used in namespaces too
      * @var string
      */
-    protected $_js_framework_folder = 'Mootools';
+    protected $_js_framework = 'Mootools';
 
     /**
      * Accessor for the Js Framework Folder Name
      * @return string
      */
-    protected function getJsFrameworkFolder ()
+    protected function getJsFramework ()
     {
-        return $this->_js_framework_folder;
+        return $this->_js_framework;
     }
 
 
@@ -157,7 +162,7 @@ abstract class AbstractCommand extends DoctrineCommand
 
 
 
-//// DoctrineCommand Contents //////////////////////////////////////////////////
+//// DoctrineCommand Contents //////////////////////////////////////////////////////////////////////////////////////////
 
 #use Symfony\Bundle\FrameworkBundle\Command\Command;
 #use Symfony\Component\Console\Input\ArrayInput;
