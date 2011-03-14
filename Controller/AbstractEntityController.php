@@ -7,20 +7,25 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Response;
 use Doctrine\Common\Util\Inflector; // Inflector::camelize()
 
-class AbstractEntityController extends Controller
+abstract class AbstractEntityController extends Controller implements InterfaceEntityController
 {
   public $bundleName;
   public $entityName;
 
   public $entity;
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   public function indexAction()
   {
     throw new NotFoundHttpException('The indexAction should be overriden.');
   }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
+  /**
+   * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+   * @param  $id
+   * @return \Symfony\Component\HttpFoundation\Response
+   */
   public function loadAction($id)
   {
     $entity = $this->getEntity($id);
@@ -42,6 +47,11 @@ class AbstractEntityController extends Controller
 //    ));
   }
 
+  /**
+   * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+   * @param  $id
+   * @return \Symfony\Component\HttpFoundation\Response
+   */
   public function saveAction($id)
   {
     $entity = $this->getEntity($id);
