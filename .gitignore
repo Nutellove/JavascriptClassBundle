@@ -8,3 +8,5 @@ desktop.ini
 .buildpath
 # PhpStorm
 .idea/*
+# Symfony Tests config file
+phpunit.xml
