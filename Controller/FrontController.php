@@ -14,7 +14,14 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class FrontController extends Controller
 {
 
-  public function loadAction($bundleName, $entityName, $id)
+  /**
+   * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+   * @param string $bundleName
+   * @param string $entityName
+   * @param  $id
+   * @return
+   */
+  public function loadAction (string $bundleName, string $entityName, $id)
   {
     $controllerClass = __NAMESPACE__."\\Entity\\$bundleName\\$entityName"."Controller";
     if ( ! class_exists($controllerClass) ) {
@@ -27,8 +34,14 @@ class FrontController extends Controller
     return $response;
   }
 
-
-  public function saveAction($bundleName, $entityName, $id)
+  /**
+   * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+   * @param string $bundleName
+   * @param string $entityName
+   * @param  $id
+   * @return
+   */
+  public function saveAction (string $bundleName, string $entityName, $id)
   {
     $controllerClass = __NAMESPACE__."\\Entity\\$bundleName\\$entityName"."Controller";
     if ( ! class_exists($controllerClass) ) {
