@@ -10,8 +10,8 @@ class FrontControllerTest extends WebTestCase
     {
         $client = $this->createClient();
 
-        $crawler = $client->request('GET', '/hello/Fabien');
-
-        $this->assertTrue($crawler->filter('html:contains("Hello Fabien")')->count() == 0);
+        # Trying to load an inexistant Entity should 404
+        $crawler = $client->request('GET', '/jsclass/JavascriptClassBundle/NotFoundAnt/load/1');
+        $this->assertTrue($client->getResponse()->isNotFound());
     }
 }
