@@ -192,15 +192,10 @@ Rolled itself on, and crackled as if frying:
 You'd think that corpse, by vague breath animated, 
 Drew life from multiplying. 
 
-
-
 Through that strange world a rustling rumour ran 
-
 Like rushing water or a gust of air, 
-
 Or grain that winnowers, with rhythmic fan, 
-
-Sweep simmering here and there.
+Sweep simmering here and there. 
 
 
 
