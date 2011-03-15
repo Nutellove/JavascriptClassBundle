@@ -8,11 +8,11 @@ Generate javascript mootools classes providing xhr-managed persistence for an en
 This bundle is **NOT finished nor working** right now. Its would-be aim is to provide
 a generated doctrine-like environment in javascript based on the same mapping.
 However, its realistic, first-release aim will *not* provide an Entity Manager nor support for Entity Associations.
-Therefore, for now, only basic stuff like accessors and mutators for Entity fields, but hey, it's better than nothing !
+Therefore, for now, only basic stuff like accessors and mutators for Entity fields.
 
 Also, authentication and security are inexistant.
 
-Oh, and no Tests either... \\(°ö°)/ !
+Oh, and almost no Tests either... \\(°ö°)/ !
 
 
 # Installation
@@ -23,7 +23,7 @@ To install the bundle, place it in the `src/Nutellove` directory of your project
 (so that it lives at `src/Nutellove/JavascriptClassBundle`). You can do this by adding the bundle as a submodule,
 cloning it, or simply downloading the source.
 
-    git submodule add https://github.com/Nutellove/JavascriptClassBundle.git src/Nutellove/JavascriptClassBundle
+    git submodule add git://github.com/Nutellove/JavascriptClassBundle.git src/Nutellove/JavascriptClassBundle
 
 ### Add the namespace to your autoloader
 
