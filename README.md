@@ -12,6 +12,7 @@ Therefore, for now, only basic stuff like accessors and mutators for Entity fiel
 
 Also, authentication and security are inexistant.
 
+
 Oh, and almost no Tests either... \\(°ö°)/ !
 
 
@@ -190,22 +191,17 @@ Down living rags of hide.
 The mass ran down, or, like a wave elated 
 Rolled itself on, and crackled as if frying: 
 You'd think that corpse, by vague breath animated, 
-Drew life from multiplying. 
+Drew life from multiplying.
 
 Through that strange world a rustling rumour ran 
 Like rushing water or a gust of air, 
 Or grain that winnowers, with rhythmic fan, 
 Sweep simmering here and there. 
 
-
-
-It seemed a dream after the forms grew fainter, 
-
+It seemed a dream after the forms grew fainter,  
 Or like a sketch that slowly seems to dawn 
-
 On a forgotten canvas, which the painter 
-
-From memory has drawn.
+From memory has drawn. 
 
 
 
